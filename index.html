@@ -1,57 +1,210 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Scripts | RunningLoss999</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>RunningLoss999 Scripts</title>
+
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #e5e7eb;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Loader */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: black;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid #111;
+      border-top: 4px solid #38bdf8;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Content */
+    #content {
+      display: none;
+      padding: 40px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 5px;
+    }
+
+    .subtitle {
+      color: #9ca3af;
+      margin-bottom: 10px;
+    }
+
+    .socials {
+      margin-bottom: 30px;
+    }
+
+    .socials a {
+      margin-right: 15px;
+      color: #38bdf8;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .socials a:hover {
+      text-decoration: underline;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      display: flex;
+      gap: 20px;
+      padding: 12px 0;
+      border-bottom: 1px solid #111;
+    }
+
+    .date {
+      min-width: 120px;
+      color: #6b7280;
+      font-size: 0.9em;
+    }
+
+    a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
+
 <body>
 
-<h1>My Roblox Scripts</h1>
+<!-- Loader -->
+<div id="loader">
+  <div class="spinner"></div>
+  <p>Loading scripts...</p>
+</div>
 
-<ul>
-  <li><a href="https://controlc.com/893718ff">Steal a Brainrot Script</a></li>
-  <li><a href="https://controlc.com/84978554">Build a Plane Script (Keyless)</a></li>
-  <li><a href="https://controlc.com/c4b3cd51">Dead Rails Script</a></li>
-  <li><a href="https://controlc.com/aea0349a">Prospecting Script</a></li>
-  <li><a href="https://controlc.com/4c89e67d">BypassHub</a></li>
-  <li><a href="https://controlc.com/9f79959e">Cut Grass Simulator Script</a></li>
-  <li><a href="https://controlc.com/7e6ed024">Build a Plane Script (Alt)</a></li>
-  <li><a href="https://controlc.com/c2963166">Emergency Hamburg Script (ZeroK)</a></li>
-  <li><a href="https://controlc.com/ac227642">99 Nights PhantomFlux Script</a></li>
-  <li><a href="https://controlc.com/9b2bccae">Ink Game Script</a></li>
-  <li><a href="https://controlc.com/50ed0a06">Emergency Hamburg Script (Alt)</a></li>
-  <li><a href="https://controlc.com/97c06b81">Steal a Brainrot Script (Alt)</a></li>
-  <li><a href="https://controlc.com/b05069d6">Catch and Feed a Brainrot Script</a></li>
-  <li><a href="https://controlc.com/779c6482">Emergency Hamburg Script (Leo4kiddszz)</a></li>
-  <li><a href="https://controlc.com/c5767ca0">99 Nights in the Forest Script (Keyless)</a></li>
-  <li><a href="https://controlc.com/c36a68b5">Plants vs Brainrots Script (IdiotHub)</a></li>
-  <li><a href="https://controlc.com/5bec9f2b">Jailbreak Auto Rob & Auto Arrest Script</a></li>
-  <li><a href="https://controlc.com/16034df4">The Bronx 3 Script (No Key)</a></li>
-  <li><a href="https://controlc.com/49743820">Da Hills Aimlock Script</a></li>
-  <li><a href="https://controlc.com/3f92ef8a">Survive on a Raft Script</a></li>
-  <li><a href="https://controlc.com/bd850973">Slap Minefields Script</a></li>
-  <li><a href="https://controlc.com/da537136">A Dusty Trip Script (Godmode)</a></li>
-  <li><a href="https://controlc.com/3c25e836">Build a Zoo Script (Keyless)</a></li>
-  <li><a href="https://controlc.com/cd50206a">Forsaken Script (VoidSaken)</a></li>
-  <li><a href="https://controlc.com/43d38096">Jujutsu Shenanigans Script (TBO, Keyless)</a></li>
-  <li><a href="https://controlc.com/6572c60e">Build a Beehive Script (ZNX)</a></li>
-  <li><a href="https://controlc.com/64aaa5f6">Funky Friday Script (NullFire)</a></li>
-  <li><a href="https://controlc.com/c185986d">Clicky Keyboard Tower Script (Viper)</a></li>
-  <li><a href="https://controlc.com/f5884d45">Build a Boat for Treasure Script (CHub)</a></li>
-  <li><a href="https://controlc.com/79a8041b">Emergency Hamburg Script (Beanzzz)</a></li>
-  <li><a href="https://controlc.com/825e96b6">Grow a Garden Script</a></li>
-  <li><a href="https://controlc.com/359e0b47">Prison Life Script</a></li>
-  <li><a href="https://controlc.com/6aed89f3">The Forge Script (Mirage Hub)</a></li>
-  <li><a href="https://controlc.com/ccf88977">Last Letter Script</a></li>
-  <li><a href="https://controlc.com/409164d2">Sword Fighting Bot Script</a></li>
-  <li><a href="https://controlc.com/64de6b0a">Tap Simulator Script (Keyless)</a></li>
-  <li><a href="https://controlc.com/136b8ef7">BloxStrike Onetap Script</a></li>
-  <li><a href="https://controlc.com/8dd2ba61">Jujutsu Shenanigans Script (JujutsuerV2)</a></li>
-  <li><a href="https://controlc.com/8a4008d8">Escape Tsunami for Brainrots Script</a></li>
-  <li><a href="https://controlc.com/dd330624">Find the Brainrot Script</a></li>
-</ul>
+<!-- Main Content -->
+<div id="content">
+  <h1>RunningLoss999</h1>
+  <p class="subtitle">Roblox Script Archive</p>
 
-<a href="index.html">← Back to Home</a>
+  <div class="socials">
+    <a href="https://www.youtube.com/@runningloss" target="_blank">📺 YouTube</a>
+    <a href="https://discord.gg/r26tfWYZ2Y" target="_blank">💬 Discord (never expires)</a>
+  </div>
+
+  <ul>
+    <!-- Jan 28, 2026 -->
+    <li><span class="date">Jan 28, 2026</span><a href="https://controlc.com/136b8ef7">BloxStrike (Onetap)</a></li>
+    <li><span class="date">Jan 28, 2026</span><a href="https://controlc.com/8dd2ba61">Jujutsu Shenanigans (JujutsuerV2)</a></li>
+    <li><span class="date">Jan 28, 2026</span><a href="https://controlc.com/8a4008d8">Escape Tsunami for Brainrots</a></li>
+    <li><span class="date">Jan 28, 2026</span><a href="https://controlc.com/dd330624">Find the Brainrot Script</a></li>
+
+    <!-- Dec 17, 2025 -->
+    <li><span class="date">Dec 17, 2025</span><a href="https://controlc.com/6aed89f3">The Forge Script (Mirage Hub)</a></li>
+    <li><span class="date">Dec 17, 2025</span><a href="https://controlc.com/ccf88977">Last Letter Script</a></li>
+    <li><span class="date">Dec 17, 2025</span><a href="https://controlc.com/409164d2">Sword Fighting Bot</a></li>
+    <li><span class="date">Dec 17, 2025</span><a href="https://controlc.com/64de6b0a">Tap Simulator Script (Keyless)</a></li>
+
+    <!-- Dec 7, 2025 -->
+    <li><span class="date">Dec 7, 2025</span><a href="https://controlc.com/359e0b47">Prison Life Script</a></li>
+
+    <!-- Nov 8, 2025 -->
+    <li><span class="date">Nov 8, 2025</span><a href="https://controlc.com/825e96b6">Grow a Garden Script</a></li>
+
+    <!-- Nov 6, 2025 -->
+    <li><span class="date">Nov 6, 2025</span><a href="https://controlc.com/79a8041b">Emergency Hamburg (Beanzzz)</a></li>
+
+    <!-- Nov 3, 2025 -->
+    <li><span class="date">Nov 3, 2025</span><a href="https://controlc.com/f5884d45">Build A Boat for Treasure (CHub)</a></li>
+
+    <!-- Oct 29, 2025 -->
+    <li><span class="date">Oct 29, 2025</span><a href="https://controlc.com/c185986d">Clicky Keyboard Tower (Viper)</a></li>
+
+    <!-- Oct 28, 2025 -->
+    <li><span class="date">Oct 28, 2025</span><a href="https://controlc.com/6572c60e">Build a Beehive (ZNX)</a></li>
+    <li><span class="date">Oct 28, 2025</span><a href="https://controlc.com/64aaa5f6">Funky Friday (NullFire)</a></li>
+
+    <!-- Oct 25, 2025 -->
+    <li><span class="date">Oct 25, 2025</span><a href="https://controlc.com/43d38096">Jujutsu Shenanigans (TBO)</a></li>
+
+    <!-- Oct 24, 2025 -->
+    <li><span class="date">Oct 24, 2025</span><a href="https://controlc.com/cd50206a">Forsaken (VoidSaken)</a></li>
+
+    <!-- Oct 23, 2025 -->
+    <li><span class="date">Oct 23, 2025</span><a href="https://controlc.com/3c25e836">Build a Zoo (Keyless)</a></li>
+
+    <!-- Oct 21, 2025 -->
+    <li><span class="date">Oct 21, 2025</span><a href="https://controlc.com/da537136">A Dusty Trip (Godmode)</a></li>
+
+    <!-- Oct 20, 2025 -->
+    <li><span class="date">Oct 20, 2025</span><a href="https://controlc.com/bd850973">Slap Minefields Script</a></li>
+
+    <!-- Oct 19, 2025 -->
+    <li><span class="date">Oct 19, 2025</span><a href="https://controlc.com/3f92ef8a">Survive on a Raft</a></li>
+    <li><span class="date">Oct 19, 2025</span><a href="https://controlc.com/49743820">Da Hills Aimlock</a></li>
+
+    <!-- Oct 18, 2025 -->
+    <li><span class="date">Oct 18, 2025</span><a href="https://controlc.com/16034df4">Tha Bronx 3 (No Key)</a></li>
+
+    <!-- Oct 17, 2025 -->
+    <li><span class="date">Oct 17, 2025</span><a href="https://controlc.com/5bec9f2b">Jailbreak Auto Rob & Auto Arrest</a></li>
+
+    <!-- Oct 16, 2025 -->
+    <li><span class="date">Oct 16, 2025</span><a href="https://controlc.com/c36a68b5">Plants vs Brainrots (IdiotHub)</a></li>
+
+    <!-- Oct 14, 2025 -->
+    <li><span class="date">Oct 14, 2025</span><a href="https://controlc.com/c5767ca0">99 Nights in the Forest (Keyless)</a></li>
+
+    <!-- Oct 7, 2025 -->
+    <li><span class="date">Oct 7, 2025</span><a href="https://controlc.com/779c6482">Emergency Hamburg (Leo4kiddszz)</a></li>
+
+    <!-- Sep 26, 2025 -->
+    <li><span class="date">Sep 26, 2025</span><a href="https://controlc.com/893718ff">Steal a Brainrot</a></li>
+    <li><span class="date">Sep 26, 2025</span><a href="https://controlc.com/84978554">Build a Plane (Keyless)</a></li>
+    <li><span class="date">Sep 26, 2025</span><a href="https://controlc.com/c4b3cd51">Dead Rails Script</a></li>
+    <li><span class="date">Sep 26, 2025</span><a href="https://controlc.com/aea0349a">Prospecting Script</a></li>
+    <li><span class="date">Sep 26, 2025</span><a href="https://controlc.com/4c89e67d">BypassHub</a></li>
+    <li><span class="date">Sep 26, 2025</span><a href="https://controlc.com/9f79959e">Cut Grass Simulator</a></li>
+    <li><span class="date">Sep 26, 2025</span><a href="https://controlc.com/7e6ed024">Build a Plane Script (Alt)</a></li>
+    <li><span class="date">Sep 26, 2025</span><a href="https://controlc.com/c2963166">Emergency Hamburg (ZeroK)</a></li>
+    <li><span class="date">Sep 26, 2025</span><a href="https://controlc.com/ac227642">99 Nights PhantomFlux</a></li>
+    <li><span class="date">Sep 26, 2025</span><a href="https://controlc.com/9b2bccae">Ink Game Script</a></li>
+    <li><span class="date">Sep 26, 2025</span><a href="https://controlc.com/50ed0a06">Emergency Hamburg Script (Alt)</a></li>
+    <li><span class="date">Sep 26, 2025</span><a href="https://controlc.com/97c06b81">Steal a Brainrot (Alt)</a></li>
+    <li><span class="date">Sep 26, 2025</span><a href="https://controlc.com/b05069d6">Catch and Feed a Brainrot</a></li>
+  </ul>
+</div>
+
+<script>
+  window.onload = () => {
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("content").style.display = "block";
+  };
+</script>
 
 </body>
 </html>
