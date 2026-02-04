@@ -13,73 +13,105 @@
     }
 
     body {
-      background: #000;
+      background: #0a0a0f;
       color: #e5e7eb;
-      font-family: 'Segoe UI', Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
       overflow-x: hidden;
+      line-height: 1.6;
     }
 
-    /* Animated Background */
-    #particles {
+    /* Animated Grid Background */
+    .grid-background {
       position: fixed;
-      width: 100%;
-      height: 100%;
+      inset: 0;
+      z-index: -1;
+      background-image: 
+        linear-gradient(rgba(56, 189, 248, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 189, 248, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: gridMove 20s linear infinite;
+    }
+
+    @keyframes gridMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+
+    .gradient-orb {
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.15;
+      pointer-events: none;
       z-index: -1;
     }
 
-    .particle {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: #38bdf8;
-      border-radius: 50%;
-      opacity: 0.3;
-      animation: float linear infinite;
+    .orb-1 {
+      background: radial-gradient(circle, #38bdf8, transparent);
+      top: -250px;
+      right: -250px;
+      animation: float1 15s ease-in-out infinite;
     }
 
-    @keyframes float {
-      0% {
-        transform: translateY(100vh) translateX(0);
-        opacity: 0;
-      }
-      10% {
-        opacity: 0.3;
-      }
-      90% {
-        opacity: 0.3;
-      }
-      100% {
-        transform: translateY(-100px) translateX(100px);
-        opacity: 0;
-      }
+    .orb-2 {
+      background: radial-gradient(circle, #818cf8, transparent);
+      bottom: -250px;
+      left: -250px;
+      animation: float2 18s ease-in-out infinite;
+    }
+
+    @keyframes float1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-100px, 100px) scale(1.1); }
+    }
+
+    @keyframes float2 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(100px, -100px) scale(1.2); }
     }
 
     /* Loader */
     #loader {
       position: fixed;
       inset: 0;
-      background: #000;
+      background: #0a0a0f;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       z-index: 9999;
-      transition: opacity 0.5s ease;
+      transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                  transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     #loader.hidden {
       opacity: 0;
+      transform: scale(0.95);
       pointer-events: none;
     }
 
+    .spinner-container {
+      position: relative;
+      width: 80px;
+      height: 80px;
+    }
+
     .spinner {
-      width: 50px;
-      height: 50px;
-      border: 4px solid #111;
-      border-top: 4px solid #38bdf8;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 3px solid transparent;
+      border-top-color: #38bdf8;
       border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+      animation: spin 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+    }
+
+    .spinner:nth-child(2) {
+      border-top-color: #818cf8;
+      animation-delay: -0.5s;
+      animation-duration: 1.5s;
     }
 
     @keyframes spin {
@@ -87,261 +119,377 @@
     }
 
     .loader-text {
-      margin-top: 20px;
-      font-size: 14px;
+      margin-top: 30px;
+      font-size: 15px;
       color: #6b7280;
-      animation: pulse 1.5s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 0.5; }
-      50% { opacity: 1; }
+      font-weight: 500;
+      letter-spacing: 1px;
     }
 
     /* Content */
     #content {
       opacity: 0;
-      padding: 60px 20px;
-      max-width: 1000px;
+      padding: 40px 20px 80px;
+      max-width: 1100px;
       margin: auto;
-      animation: fadeIn 1s ease forwards;
-      animation-delay: 0.3s;
+      animation: contentFadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      animation-delay: 0.2s;
     }
 
-    @keyframes fadeIn {
-      to { opacity: 1; }
+    @keyframes contentFadeIn {
+      from { 
+        opacity: 0; 
+        transform: translateY(20px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* Header */
     header {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 50px;
+      padding-top: 20px;
+    }
+
+    .logo-container {
+      margin-bottom: 15px;
+      animation: logoFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
 
     h1 {
-      font-size: 3.5em;
-      margin-bottom: 10px;
-      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      font-size: 4em;
+      font-weight: 800;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      animation: glow 3s ease-in-out infinite;
-    }
-
-    @keyframes glow {
-      0%, 100% { filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.5)); }
-      50% { filter: drop-shadow(0 0 20px rgba(129, 140, 248, 0.8)); }
+      letter-spacing: -2px;
+      position: relative;
+      display: inline-block;
     }
 
     .subtitle {
       color: #9ca3af;
-      font-size: 1.1em;
-      margin-bottom: 20px;
+      font-size: 1.15em;
+      font-weight: 400;
+      margin-bottom: 25px;
+      letter-spacing: 0.5px;
     }
 
     .socials {
       display: flex;
-      gap: 20px;
+      gap: 15px;
       justify-content: center;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
     }
 
     .social-btn {
-      padding: 10px 20px;
-      background: rgba(56, 189, 248, 0.1);
-      border: 1px solid #38bdf8;
-      border-radius: 8px;
+      padding: 12px 28px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1.5px solid rgba(56, 189, 248, 0.3);
+      border-radius: 12px;
       color: #38bdf8;
       text-decoration: none;
-      font-weight: bold;
-      transition: all 0.3s ease;
+      font-weight: 600;
+      font-size: 0.95em;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       overflow: hidden;
+      backdrop-filter: blur(10px);
     }
 
     .social-btn::before {
       content: '';
       position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-radius: 50%;
-      background: rgba(56, 189, 248, 0.2);
-      transform: translate(-50%, -50%);
-      transition: width 0.5s, height 0.5s;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(129, 140, 248, 0.1));
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
     .social-btn:hover::before {
-      width: 300px;
-      height: 300px;
+      opacity: 1;
     }
 
     .social-btn:hover {
-      background: rgba(56, 189, 248, 0.2);
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+      border-color: #38bdf8;
       transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(56, 189, 248, 0.2);
     }
 
     /* Search */
     .search-container {
-      margin-bottom: 30px;
+      margin-bottom: 35px;
       text-align: center;
+    }
+
+    .search-wrapper {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      max-width: 550px;
     }
 
     #searchBar {
       width: 100%;
-      max-width: 500px;
-      padding: 12px 20px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid #38bdf8;
-      border-radius: 8px;
+      padding: 15px 20px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1.5px solid rgba(56, 189, 248, 0.2);
+      border-radius: 14px;
       color: #e5e7eb;
-      font-size: 16px;
+      font-size: 15px;
       outline: none;
-      transition: all 0.3s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(10px);
+    }
+
+    #searchBar::placeholder {
+      color: #6b7280;
     }
 
     #searchBar:focus {
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
-      background: rgba(255, 255, 255, 0.08);
+      border-color: #38bdf8;
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.1);
     }
 
     /* Counter */
     .counter {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 35px;
       font-size: 14px;
       color: #6b7280;
+      font-weight: 500;
     }
 
     .count {
       color: #38bdf8;
-      font-weight: bold;
+      font-weight: 700;
+      font-size: 16px;
     }
 
     /* Scripts List */
     .scripts-list {
       list-style: none;
+      display: grid;
+      gap: 12px;
     }
 
     .script-item {
-      display: flex;
+      display: grid;
+      grid-template-columns: 110px 1fr auto auto;
       align-items: center;
-      gap: 15px;
-      padding: 15px;
-      margin-bottom: 10px;
+      gap: 20px;
+      padding: 18px 20px;
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(56, 189, 248, 0.1);
-      border-radius: 8px;
-      transition: all 0.3s ease;
+      border-radius: 12px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       opacity: 0;
-      animation: slideIn 0.5s ease forwards;
+      animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      position: relative;
+      overflow: hidden;
     }
 
-    @keyframes slideIn {
+    .script-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, #38bdf8, #818cf8);
+      transform: scaleY(0);
+      transition: transform 0.3s ease;
+    }
+
+    .script-item:hover::before {
+      transform: scaleY(1);
+    }
+
+    @keyframes slideUp {
       from {
         opacity: 0;
-        transform: translateX(-20px);
+        transform: translateY(20px);
       }
       to {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateY(0);
       }
     }
 
     .script-item:hover {
-      background: rgba(56, 189, 248, 0.05);
-      border-color: #38bdf8;
-      transform: translateX(5px);
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+      background: rgba(56, 189, 248, 0.04);
+      border-color: rgba(56, 189, 248, 0.3);
+      transform: translateX(8px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     }
 
     .date {
-      min-width: 110px;
       color: #6b7280;
-      font-size: 0.85em;
-      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-weight: 500;
+      white-space: nowrap;
     }
 
     .script-link {
-      flex: 1;
       color: #e5e7eb;
       text-decoration: none;
-      transition: color 0.3s ease;
+      transition: color 0.2s ease;
+      font-weight: 500;
+      font-size: 15px;
     }
 
-    .script-link:hover {
+    .script-item:hover .script-link {
       color: #38bdf8;
     }
 
     .copy-btn {
-      padding: 6px 12px;
-      background: rgba(56, 189, 248, 0.1);
-      border: 1px solid #38bdf8;
-      border-radius: 6px;
+      padding: 8px 18px;
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 8px;
       color: #38bdf8;
-      font-size: 12px;
+      font-size: 13px;
+      font-weight: 600;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      white-space: nowrap;
     }
 
     .copy-btn:hover {
-      background: rgba(56, 189, 248, 0.2);
-      box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+      background: rgba(56, 189, 248, 0.15);
+      border-color: #38bdf8;
+      transform: scale(1.05);
+    }
+
+    .copy-btn:active {
+      transform: scale(0.98);
     }
 
     .copy-btn.copied {
-      background: rgba(34, 197, 94, 0.2);
+      background: rgba(34, 197, 94, 0.15);
       border-color: #22c55e;
       color: #22c55e;
+    }
+
+    .warning-badge {
+      padding: 4px 10px;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: 6px;
+      color: #ef4444;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 60px;
+      border-top: 1px solid rgba(56, 189, 248, 0.1);
+      color: #6b7280;
+      font-size: 14px;
     }
 
     /* Responsive */
     @media (max-width: 768px) {
       h1 {
-        font-size: 2.5em;
+        font-size: 2.8em;
+        letter-spacing: -1px;
       }
 
       .script-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
+        grid-template-columns: 1fr;
+        gap: 12px;
       }
 
       .date {
-        min-width: auto;
+        font-size: 12px;
       }
+
+      .copy-btn {
+        justify-self: start;
+      }
+
+      .socials {
+        gap: 10px;
+      }
+
+      .social-btn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+      }
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #0a0a0f;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(56, 189, 248, 0.3);
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(56, 189, 248, 0.5);
     }
   </style>
 </head>
 
 <body>
 
-<!-- Particle Background -->
-<div id="particles"></div>
+<!-- Background -->
+<div class="grid-background"></div>
+<div class="gradient-orb orb-1"></div>
+<div class="gradient-orb orb-2"></div>
 
 <!-- Loader -->
 <div id="loader">
-  <div class="spinner"></div>
-  <p class="loader-text">Loading scripts...</p>
+  <div class="spinner-container">
+    <div class="spinner"></div>
+    <div class="spinner"></div>
+  </div>
+  <p class="loader-text">LOADING</p>
 </div>
 
 <!-- Main Content -->
 <div id="content">
   <header>
-    <h1>RunningLoss999</h1>
+    <div class="logo-container">
+      <h1>RunningLoss</h1>
+    </div>
     <p class="subtitle">Roblox Script Archive</p>
 
     <div class="socials">
-      <a href="https://www.youtube.com/@runningloss" target="_blank" class="social-btn">📺 YouTube</a>
-      <a href="https://discord.gg/r26tfWYZ2Y" target="_blank" class="social-btn">💬 Discord</a>
+      <a href="https://www.youtube.com/@runningloss" target="_blank" class="social-btn">YouTube</a>
+      <a href="https://discord.gg/r26tfWYZ2Y" target="_blank" class="social-btn">Discord</a>
     </div>
   </header>
 
   <!-- Search -->
   <div class="search-container">
-    <input type="text" id="searchBar" placeholder="🔍 Search scripts...">
+    <div class="search-wrapper">
+      <input type="text" id="searchBar" placeholder="Search scripts...">
+    </div>
   </div>
 
   <!-- Counter -->
@@ -594,16 +742,19 @@
     <li class="script-item" style="animation-delay: 2s">
       <span class="date">Jul 23, 2025</span>
       <a href="https://controlc.com/caefa88d" target="_blank" class="script-link">T4LOW Vending Machine Auto Rob</a>
+      <span class="warning-badge">Not Working Most Likely</span>
       <button class="copy-btn" onclick="copyLink('https://controlc.com/caefa88d', this)">Copy</button>
     </li>
     <li class="script-item" style="animation-delay: 2.05s">
       <span class="date">Jul 23, 2025</span>
       <a href="https://controlc.com/abc127de" target="_blank" class="script-link">T4LOW Criminal Auto Rob</a>
+      <span class="warning-badge">Not Working Most Likely</span>
       <button class="copy-btn" onclick="copyLink('https://controlc.com/abc127de', this)">Copy</button>
     </li>
     <li class="script-item" style="animation-delay: 2.1s">
       <span class="date">Jul 23, 2025</span>
       <a href="https://controlc.com/cc7e554e" target="_blank" class="script-link">T4LOW Emergency Hamburg</a>
+      <span class="warning-badge">Not Working Most Likely</span>
       <button class="copy-btn" onclick="copyLink('https://controlc.com/cc7e554e', this)">Copy</button>
     </li>
 
@@ -638,37 +789,34 @@
       <button class="copy-btn" onclick="copyLink('https://controlc.com/9b2bccae', this)">Copy</button>
     </li>
   </ul>
+
+  <footer>
+    <p>© 2026 RunningLoss • All scripts are for educational purposes</p>
+  </footer>
 </div>
 
 <script>
-  // Particle system
-  function createParticles() {
-    const container = document.getElementById('particles');
-    for (let i = 0; i < 30; i++) {
-      const particle = document.createElement('div');
-      particle.className = 'particle';
-      particle.style.left = Math.random() * 100 + '%';
-      particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-      particle.style.animationDelay = Math.random() * 5 + 's';
-      container.appendChild(particle);
-    }
-  }
-
   // Loader
   window.addEventListener('load', () => {
     setTimeout(() => {
       document.getElementById('loader').classList.add('hidden');
-    }, 1500);
+    }, 1200);
   });
 
-  // Copy function
+  // Copy function with improved feedback
   function copyLink(url, button) {
     navigator.clipboard.writeText(url).then(() => {
+      const originalText = button.textContent;
       button.textContent = '✓ Copied';
       button.classList.add('copied');
       setTimeout(() => {
-        button.textContent = 'Copy';
+        button.textContent = originalText;
         button.classList.remove('copied');
+      }, 2000);
+    }).catch(() => {
+      button.textContent = '✗ Failed';
+      setTimeout(() => {
+        button.textContent = 'Copy';
       }, 2000);
     });
   }
@@ -692,7 +840,7 @@
     Array.from(scriptItems).forEach(item => {
       const text = item.textContent.toLowerCase();
       if (text.includes(query)) {
-        item.style.display = 'flex';
+        item.style.display = 'grid';
       } else {
         item.style.display = 'none';
       }
@@ -702,8 +850,21 @@
   });
 
   // Initialize
-  createParticles();
   updateCount();
+
+  // Smooth scroll behavior
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
 </script>
 
 </body>
